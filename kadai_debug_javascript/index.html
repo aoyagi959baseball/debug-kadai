@@ -65,7 +65,7 @@
             // 入力フォームの値をチェック
             if (minutes < 0 || seconds < 0) {
                 document.getElementById('error').innerText = "マイナスは入力できません";
-                document.getElementById('errors').classList.remove('hidden');
+                document.getElementById('error').classList.remove('hidden');
                 return;
             }
 
@@ -75,6 +75,7 @@
 
         // カウントダウンを開始する関数
         function startCountdown() {
+          isPaused = false;
             let minutes = document.getElementById('minutes').value || 0;
             let seconds = document.getElementById('seconds').value || 0;
             let timeLeft = (minutes * 60) + parseInt(seconds);
@@ -133,6 +134,7 @@
             clearInterval(alertInterval);
             document.body.style.backgroundColor = 'white';
             document.getElementById('alertStop').classList.add('hidden')
+            setMode("setting");
         }
 
         // HTML要素の表示を制御する関数
